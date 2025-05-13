@@ -1,4 +1,4 @@
-# Selenium-Web-Tester
+# Part3_Survey_TestCases
 
 This is the Selenium Tester for CS458 Project.
 
@@ -17,7 +17,7 @@ This step clones the project repository onto your\
 local machine.
 
 ```bash
-git clone https://github.com/CS458-SWVerification-Validation/Selenium-Web-Tester.git
+git clone https://github.com/CS458-SWVerification-Validation/Part3_Survey_TestCases.git
 ```
 
 ## Python Virtual Environment Setup
@@ -29,14 +29,14 @@ projects easing the management process.
 
 For Windows:
 ```bash
-cd Selenium-Web-Tester
+cd Part3_Survey_TestCases
 python -m venv env
 .\env\Scripts\activate
 ```
 
 For Linux/MacOS:
 ```bash
-cd Selenium-Web-Tester
+cd Part3_Survey_TestCases
 python -m venv env
 source env/bin/activate
 ```
