@@ -9,7 +9,7 @@ if __name__ == "__main__":
         exit()
 
     # Test Case 1: A valid survey
-    tester.test_create_survey("Cool Survey", [
+    tester.test_create_survey("Test 1: Valid Survey", [
         {
             "text": "What’s your favorite food?",
             "type": "Dropdown",
@@ -28,10 +28,10 @@ if __name__ == "__main__":
     ])
 
     # Test Case 2: Valid title but no questions
-    tester.test_create_survey("No Questions Survey", [])  # Expected: Failure
+    tester.test_create_survey("Test 2: No Questions Survey", [])  # Expected: Failure
 
     # Test Case 3: One question with empty text
-    tester.test_create_survey("Empty Question Text", [{
+    tester.test_create_survey("Test 3: Empty Question Text", [{
         "text": "",
         "type": "Multiple Choice",
         "options": ["Option A", "Option B"],
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     }])  # Expected: Failure (question text required)
 
     # Test Case 4: Multiple Choice question with no options
-    tester.test_create_survey("No Options MCQ", [{
+    tester.test_create_survey("Test 4: No Options MCQ", [{
         "text": "Choose one",
         "type": "Multiple Choice",
         "options": [],
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     }])  # Expected: Failure (options required)
 
     # Test Case 5: Valid Open Text question
-    tester.test_create_survey("Open Text Valid", [{
+    tester.test_create_survey("Test 5: Open Text Valid", [{
         "text": "Say something meaningful:",
         "type": "Open Text",
         "options": [],
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     }])  # Expected: Success
 
     # Test Case 6: Conditional logic with non-existent question reference
-    tester.test_create_survey("Invalid Logic", [{
+    tester.test_create_survey("Test 6: Invalid Logic", [{
         "text": "What’s your favorite color?",
         "type": "Dropdown",
         "options": ["Red", "Blue"],
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     }])  # Expected: Failure (q999 doesn’t exist)
 
     # Test Case 7: Valid conditional logic
-    tester.test_create_survey("Conditional Logic Test", [
+    tester.test_create_survey("Test 7: Conditional Logic Test", [
         {
             "text": "Do you like pizza?",
             "type": "Multiple Choice",
@@ -87,7 +87,7 @@ if __name__ == "__main__":
     ])  # Expected: Success
 
     # Test Case 8: A mix of question types
-    tester.test_create_survey("Mixed Types Survey", [
+    tester.test_create_survey("Test 8: Mixed Types Survey", [
         {
             "text": "Rate this form",
             "type": "Rating (1-5)",
@@ -110,4 +110,3 @@ if __name__ == "__main__":
 
     # Test Case 9: Empty survey title and no questions
     tester.test_create_survey("", [])  # Expected: Failure (title required)
-

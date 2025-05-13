@@ -136,16 +136,16 @@ class Test:
                 print(f"[-] Error on question {i}: {e}")
                 return
 
-            # Save survey
-            try:
-                save_btn = WebDriverWait(self.driver, 10).until(
-                    EC.element_to_be_clickable((By.CSS_SELECTOR, ".btn-primary"))
-                )
-                self.driver.execute_script("arguments[0].scrollIntoView(true);", save_btn)
-                time.sleep(1.5)
-                self.driver.execute_script("arguments[0].click();", save_btn)
-                print("[+] Survey saved.")
-                
-            except Exception as e:
-                print("[-] Save Survey button not clickable:", e)
-
+        # Save survey
+        try:
+            save_btn = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, ".btn-primary"))
+            )
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", save_btn)
+            time.sleep(1.5)
+            self.driver.execute_script("arguments[0].click();", save_btn)
+            print("[+] Survey saved.")
+            time.sleep(1.5)
+            
+        except Exception as e:
+            print("[-] Save Survey button not clickable:", e)
