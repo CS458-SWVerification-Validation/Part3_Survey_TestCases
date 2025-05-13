@@ -66,4 +66,4 @@ python sel_login_test.py
 
 Now the Selenium Tester would be able to run the webdriver\
 to execute the automated tests on Flask application that runs\
-on [https://validsoftware458.com.tr:8443/
+on https://validsoftware458.com.tr:8443/
