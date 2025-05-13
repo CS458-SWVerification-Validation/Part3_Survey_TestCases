@@ -10,10 +10,8 @@ import time
 class Test:
     def __init__(self, domain):
         try:
-            # Automatically install the correct ChromeDriver version
             chromedriver_autoinstaller.install()
 
-            # Chrome options for automation
             options = webdriver.ChromeOptions()
             options.add_argument("--ignore-certificate-errors")
             options.add_argument("--allow-insecure-localhost")
@@ -67,7 +65,7 @@ class Test:
 
     def test_create_survey(self, title, questions):
         self.driver.get("http://127.0.0.1:5000/custom-survey/designer")
-        time.sleep(1.5)
+        time.sleep(1)
 
         # Fill Title
         try:
@@ -83,24 +81,17 @@ class Test:
         for i, q in enumerate(questions):
             time.sleep(1.5)
             try:
-                # Count blocks before click
-                num_before = len(self.driver.find_elements(By.CLASS_NAME, "question-block"))
-
                 # Click "Add Question" button
                 add_btn = self.driver.find_element(By.CSS_SELECTOR, ".btn-secondary")
                 self.driver.execute_script("arguments[0].scrollIntoView(true);", add_btn)
                 time.sleep(0.3)
                 self.driver.execute_script("arguments[0].click();", add_btn)
 
-                # Wait until a new block is added
                 WebDriverWait(self.driver, 5).until(
                     lambda driver: len(driver.find_elements(By.CLASS_NAME, "question-block")) > num_before
                 )
-
-                # Now grab the newest block
                 question_blocks = self.driver.find_elements(By.CLASS_NAME, "question-block")
                 block = question_blocks[-1]
-
 
                 # Fill question text
                 block.find_element(By.CSS_SELECTOR, ".q-text").send_keys(q["text"])
