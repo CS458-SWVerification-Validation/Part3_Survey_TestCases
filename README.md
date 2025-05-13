@@ -61,9 +61,9 @@ Just make sure that Flask application also runs on the background\
 before executing this command.
 
 ```bash
-python sel_login_test.py
+python survey_tests.py
 ```
 
 Now the Selenium Tester would be able to run the webdriver\
 to execute the automated tests on Flask application that runs\
-on https://validsoftware458.com.tr:8443/
+on https://127.0.0.1:5000/ or https://validsoftware458.com.tr:8443/
