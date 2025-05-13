@@ -4,10 +4,11 @@ if __name__ == "__main__":
     tester = Test("http://127.0.0.1:5000")
 
     # Log in
-    if not tester.login("duru.solakoglu@ug.bilkent.edu.tr", "12345678"):
+    if not tester.login("duru@ug.bilkent.edu.tr", "98765432"):
         print("[-] Login failed. Aborting tests.")
         exit()
 
+    # Test Case 1: A valid survey
     tester.test_create_survey("Cool Survey", [
         {
             "text": "What’s your favorite food?",
@@ -16,7 +17,7 @@ if __name__ == "__main__":
             "required": True
         },
         {
-            "text": "Why do you love it?", #???????????????????
+            "text": "Why do you love it?",
             "type": "Open Text",
             "required": False,
             "conditional": {
@@ -25,9 +26,6 @@ if __name__ == "__main__":
             }
         }
     ])
-
-    # Test Case 1: Empty survey title and no questions
-    tester.test_create_survey("", [])  # Expected: Failure (title required)
 
     # Test Case 2: Valid title but no questions
     tester.test_create_survey("No Questions Survey", [])  # Expected: Failure
@@ -109,3 +107,7 @@ if __name__ == "__main__":
             "required": False
         }
     ])  # Expected: Success
+
+    # Test Case 9: Empty survey title and no questions
+    tester.test_create_survey("", [])  # Expected: Failure (title required)
+

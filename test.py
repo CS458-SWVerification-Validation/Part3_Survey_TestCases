@@ -81,19 +81,26 @@ class Test:
             return
 
         for i, q in enumerate(questions):
+            time.sleep(1.5)
             try:
-                # Click "Add Question"
-                add_btn = self.driver.find_element(By.CSS_SELECTOR, ".btn-secondary")
-                add_btn.click()
-                time.sleep(1.5)
+                # Count blocks before click
+                num_before = len(self.driver.find_elements(By.CLASS_NAME, "question-block"))
 
-                # Get last added question block
+                # Click "Add Question" button
+                add_btn = self.driver.find_element(By.CSS_SELECTOR, ".btn-secondary")
+                self.driver.execute_script("arguments[0].scrollIntoView(true);", add_btn)
+                time.sleep(0.3)
+                self.driver.execute_script("arguments[0].click();", add_btn)
+
+                # Wait until a new block is added
+                WebDriverWait(self.driver, 5).until(
+                    lambda driver: len(driver.find_elements(By.CLASS_NAME, "question-block")) > num_before
+                )
+
+                # Now grab the newest block
                 question_blocks = self.driver.find_elements(By.CLASS_NAME, "question-block")
-                time.sleep(1.5)
-                if not question_blocks:
-                    print(f"[-] No question block found after question {i}.")
-                    return
                 block = question_blocks[-1]
+
 
                 # Fill question text
                 block.find_element(By.CSS_SELECTOR, ".q-text").send_keys(q["text"])
@@ -138,6 +145,7 @@ class Test:
                 time.sleep(1.5)
                 self.driver.execute_script("arguments[0].click();", save_btn)
                 print("[+] Survey saved.")
+                
             except Exception as e:
                 print("[-] Save Survey button not clickable:", e)
 
