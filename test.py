@@ -87,9 +87,6 @@ class Test:
                 time.sleep(0.3)
                 self.driver.execute_script("arguments[0].click();", add_btn)
 
-                WebDriverWait(self.driver, 5).until(
-                    lambda driver: len(driver.find_elements(By.CLASS_NAME, "question-block")) > num_before
-                )
                 question_blocks = self.driver.find_elements(By.CLASS_NAME, "question-block")
                 block = question_blocks[-1]
 
@@ -103,7 +100,7 @@ class Test:
                 time.sleep(1.5)
 
                 # Fill options if necessary
-                if q["type"] != "Open Text":
+                if not (q["type"] == "Open Text" or q["type"] == "Rating (1-5)"):
                     time.sleep(1.5)
                     options_input = block.find_element(By.CSS_SELECTOR, ".q-options .form-control")
                     options_input.send_keys(",".join(q.get("options", [])))
